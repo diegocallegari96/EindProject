@@ -15,12 +15,3 @@ p {
     font-size: 14px;
     margin: 0;
 }
-
-a {
-    color: #fff; /* Link color */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
