@@ -63,7 +63,7 @@ input {
 }
 
 .login-button, .create-account-button {
-    background: #ff5722; /* A warm, coral color for the buttons */
+    background: #ff5722;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -73,5 +73,5 @@ input {
 }
 
 .login-button:hover, .create-account-button:hover {
-    background: #ff814d; /* A lighter shade when hovered */
+    background: #ff814d;
 }
