@@ -1,0 +1,75 @@
+.background-registration {
+    background-image: url('src/assets/stockvault-romantic-couple-kissing-in-love176024.jpg');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Poppins, sans-serif;
+}
+
+.registration-container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.26);
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #333;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.h1-registration {
+    font-size: 3rem;
+    color: #0078d4;
+    margin: 20px 0;
+    text-shadow: 3px 3px 6px rgb(12, 12, 12);
+}
+
+.p1-registration {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #ff5722;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.p2-registration {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #ffffff;
+    text-shadow: 3px 3px 6px rgb(12, 12, 12);
+}
+
+.input-group-registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #0078d4;
+    border-radius: 5px;
+    width: 15.5rem;
+}
+
+.register-button {
+    width: 16.5rem;
+    background: #ff5722;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-button:hover, .create-account-button:hover {
+    background: #ff814d;
+}

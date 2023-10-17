@@ -1,18 +1,19 @@
 import "./Landing.css"
+import { Link } from "react-router-dom";
 
 function Landing() {
     return (
-      <div className="background">
+      <div className="background-landing">
         <div className="landing-container">
-            <h1>Welcome to Thailand WeatherApp!</h1>
-            <p className="p1">Login now to access all of our features</p>
-            <div className="input-group">
+            <h1 className="h1-landing">Welcome to Thailand WeatherApp!</h1>
+            <p className="p1-landing">Login now to access all of our features</p>
+              <form className="input-group-landing">
                 <input type="text" placeholder="Email" />
                 <input type="password" placeholder="Password" />
-                <button className="login-button">Login</button>
-            </div>
-            <p className="p2">Don't have an account?</p>
-            <button className="create-account-button">Create Account</button>
+                <Link to="/home"><button className="login-button-landing">Login</button></Link>
+              </form>
+            <p className="p2-landing">Don't have an account?</p>
+            <p className="p2-landing"><Link to="/register">Sign up now</Link></p>
         </div>
       </div>
     )
