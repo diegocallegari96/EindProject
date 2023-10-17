@@ -1,0 +1,26 @@
+footer {
+    background-color: #333; /* Change the background color to your preference */
+    color: #fff; /* Text color */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+p {
+    font-size: 14px;
+    margin: 0;
+}
+
+a {
+    color: #fff; /* Link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
