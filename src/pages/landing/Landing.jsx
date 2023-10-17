@@ -12,7 +12,7 @@ function Landing() {
                 <input type="password" placeholder="Password" />
                 <Link to="/home"><button className="login-button-landing">Login</button></Link>
               </form>
-            <p className="p2-landing">Don't have an account?</p>
+            <p className="p2-landing">Don&apos;t have an account?</p>
             <p className="p2-landing"><Link to="/register">Sign up now</Link></p>
         </div>
       </div>
