@@ -12,7 +12,7 @@ import NotFound from "./pages/notFound/NotFound.jsx";
 function App() {
     return (
     <>
-      <div>
+      <div className="App">
           <Routes>
               <Route path="/" element={<Landing/>}/>
               <Route path="/register" element={<Registration/>}/>

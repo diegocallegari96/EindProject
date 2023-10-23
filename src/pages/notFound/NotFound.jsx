@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 function NotFound() {
     return(
-        <div>
+        <div className="div-not-found">
             <main>
                 <h2>Oeps... Deze pagina bestaat niet</h2>
                 <p>Breng me terug naar de <Link to="/">Home pagina</Link></p>

@@ -9,10 +9,10 @@ function Landing() {
             <p className="p1-landing">Login now to access all of our features</p>
               <form className="input-group-landing">
                 <input type="text" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Password"/>
                 <Link to="/home"><button className="login-button-landing">Login</button></Link>
               </form>
-            <p className="p2-landing">Don&apos;t have an account?</p>
+            <p className="p2-landing">Don&apos;t have an account yet?</p>
             <p className="p2-landing"><Link to="/register">Sign up now</Link></p>
         </div>
       </div>

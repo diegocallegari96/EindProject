@@ -1,17 +1,13 @@
-footer {
-    background-color: #333; /* Change the background color to your preference */
-    color: #fff; /* Text color */
-    padding: 20px 0;
-    text-align: center;
+.footer {
+    background-color: black;
+    color: rgba(255, 255, 255, 0.85);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-p {
-    font-size: 14px;
-    margin: 0;
-}
