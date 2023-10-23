@@ -1,6 +1,6 @@
 .footer {
-    background-color: black;
-    color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 87, 34);
+    color: rgba(0, 120, 212, 1);
     height: 50px;
     display: flex;
     justify-content: center;
@@ -9,5 +9,6 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    font-size: 20px;
 }
 
