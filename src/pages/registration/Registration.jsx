@@ -1,5 +1,7 @@
 import "./Registration.css"
 import {Link} from "react-router-dom";
+import Button from "../../components/Button.jsx";
+import React from "react";
 function Registration() {
     return(
         <div className="background-registration">
@@ -11,7 +13,7 @@ function Registration() {
                     <input type="text" placeholder="Last name" />
                     <input type="text" placeholder="Email" />
                     <input type="password" placeholder="Password" />
-                    <button className="register-button">Create account</button>
+                    <Button className="register-btn" placeHolder="Create Account"/>
                   </form>
                 <p className="p2-registration">Already have an account?</p>
                 <p className="p2-registration"><Link to="/">Sign in now</Link></p>

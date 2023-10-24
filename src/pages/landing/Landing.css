@@ -58,11 +58,26 @@ input {
     width: 15.5rem;
 }
 
-.login-button-landing {
-    width: 16.5rem;
+/*.login-button-landing {*/
+/*    width: 16.5rem;*/
+/*}*/
+
+/*.login-button-landing, .create-account-button-landing {*/
+/*    background: #ff5722;*/
+/*    color: #fff;*/
+/*    padding: 10px 20px;*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*    font-size: 16px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+.login-button-landing:hover, .create-account-button-landing:hover {
+    background: #ff814d;
 }
 
-.login-button-landing, .create-account-button-landing {
+.landing-container button {
+    width: 16.5rem;
     background: #ff5722;
     color: #fff;
     padding: 10px 20px;
@@ -72,6 +87,6 @@ input {
     cursor: pointer;
 }
 
-.login-button-landing:hover, .create-account-button-landing:hover {
+.landing-container button:hover {
     background: #ff814d;
 }

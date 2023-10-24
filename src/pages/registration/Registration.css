@@ -59,7 +59,7 @@ input {
     width: 15.5rem;
 }
 
-.register-button {
+.registration-container button {
     width: 16.5rem;
     background: #ff5722;
     color: #fff;
@@ -70,6 +70,6 @@ input {
     cursor: pointer;
 }
 
-.login-button:hover, .create-account-button:hover {
+.registration-container button:hover {
     background: #ff814d;
 }
