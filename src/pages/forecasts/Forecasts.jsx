@@ -26,13 +26,15 @@ function Forecasts() {
                                 <h4>Humidity: 49%</h4>
                                 <h4>UV: 1</h4>
                             </div>
-                            <div className="icon">
+                            <div className="icon-forecast">
                                 <img src="https://openweathermap.org/img/wn/11n@2x.png" alt="weather-icon"/>
                                 <h4>Moderate Rain</h4>
                             </div>
                         </div>
-                    </div>
+                        <div className="days-forecast">
 
+                        </div>
+                    </div>
                 </div>
             </main>
             <Footer/>
