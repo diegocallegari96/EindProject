@@ -23,13 +23,13 @@ function NavBar() {
                     <NavLink to="/home">Home</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/maps">Maps</NavLink>
-                </li>
-                <li>
                     <NavLink to="/forecasts">Forecasts</NavLink>
                 </li>
                 <li>
                     <NavLink to="/contact">Contact</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/account">Account</NavLink>
                 </li>
             </ul>
         </nav>
