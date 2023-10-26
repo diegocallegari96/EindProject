@@ -23,11 +23,19 @@ function Forecasts() {
             const lat = weatherData.coord.lat;
             const lon = weatherData.coord.lon;
 
-
             // Fetch pollution data using coordinates
             const pollutionUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
             const pollutionResponse = await axios.get(pollutionUrl);
             setPollution(pollutionResponse.data);
+
+            // Fetch 5-day weather data using coordinates
+            const fiveWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+            const fiveWeatherResponse = await axios.get(fiveWeatherUrl);
+            setFiveWeather(fiveWeatherResponse.data);
+
+            // Fetch 5-day pollution data using coordinates
+            const fivePollutionUrl =`https://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+            const fivePollutionResponse = await axios.get(fivePollutionUrl);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -44,10 +52,9 @@ function Forecasts() {
         let hour = a.getHours();
         const min = a.getMinutes();
         const sec = a.getSeconds();
-        // GMT TO GMT+7
-        hour = (hour + 7) % 24;
         return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
     }
+    console.log(fiveWeather.list)
 
 
     return(
@@ -99,49 +106,53 @@ function Forecasts() {
                         </div>
                         <div className="days-forecast">
                             <h2>5-Day Forecast</h2>
+                            {fiveWeather && fiveWeather.list && (
+                            <>
                             <ul className="weather-cards">
                                 <li className="card">
                                     <h3>(2023-10-23)</h3>
-                                    <img src="https://openweathermap.org/img/wn/11n@2x.png" alt="weather-icon"/>
-                                    <h4>Temp: 29.3°C</h4>
-                                    <h4>Wind: 4.31 M/S</h4>
-                                    <h4>Humidity: 49%</h4>
+                                    {fiveWeather.list[0] ? <img src={`https://openweathermap.org/img/wn/${fiveWeather.list[0]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
+                                    {fiveWeather.list[0] ? <h4>Temp: {fiveWeather.list[0].main.temp} °C</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[0] ? <h4>Wind: {fiveWeather.list[0].wind.speed} M/S</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[0] ? <h4>Humidity: {fiveWeather.list[0].main.humidity}%</h4> : <h4>N/A</h4>}
                                     <h4>PM<sub>2.5</sub>: 46</h4>
                                 </li>
                                 <li className="card">
                                     <h3>(2023-10-23)</h3>
-                                    <img src="https://openweathermap.org/img/wn/11n@2x.png" alt="weather-icon"/>
-                                    <h4>Temp: 29.3°C</h4>
-                                    <h4>Wind: 4.31 M/S</h4>
-                                    <h4>Humidity: 49%</h4>
+                                    {fiveWeather.list[8]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[8]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
+                                    {fiveWeather.list[8] ? <h4>Temp: {fiveWeather.list[8].main.temp} °C</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[8] ? <h4>Wind: {fiveWeather.list[8].wind.speed} M/S</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[8] ? <h4>Humidity: {fiveWeather.list[8].main.humidity}%</h4> : <h4>N/A</h4>}
                                     <h4>PM<sub>2.5</sub>: 46</h4>
                                 </li>
                                 <li className="card">
                                     <h3>(2023-10-23)</h3>
-                                    <img src="https://openweathermap.org/img/wn/11n@2x.png" alt="weather-icon"/>
-                                    <h4>Temp: 29.3°C</h4>
-                                    <h4>Wind: 4.31 M/S</h4>
-                                    <h4>Humidity: 49%</h4>
+                                    {fiveWeather.list[16]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[16]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
+                                    {fiveWeather.list[16] ? <h4>Temp: {fiveWeather.list[16].main.temp} °C</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[16] ? <h4>Wind: {fiveWeather.list[16].wind.speed} M/S</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[16] ? <h4>Humidity: {fiveWeather.list[16].main.humidity}%</h4> : <h4>N/A</h4>}
                                     <h4>PM<sub>2.5</sub>: 46</h4>
                                 </li>
                                 <li className="card">
                                     <h3>(2023-10-23)</h3>
-                                    <img src="https://openweathermap.org/img/wn/11n@2x.png" alt="weather-icon"/>
-                                    <h4>Temp: 29.3°C</h4>
-                                    <h4>Wind: 4.31 M/S</h4>
-                                    <h4>Humidity: 49%</h4>
+                                    {fiveWeather.list[24]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[24]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
+                                    {fiveWeather.list[24] ? <h4>Temp: {fiveWeather.list[24].main.temp} °C</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[24] ? <h4>Wind: {fiveWeather.list[24].wind.speed} M/S</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[24] ? <h4>Humidity: {fiveWeather.list[24].main.humidity}%</h4> : <h4>N/A</h4>}
                                     <h4>PM<sub>2.5</sub>: 46</h4>
                                 </li>
                                 <li className="card">
                                     <h3>(2023-10-23)</h3>
-                                    <img src="https://openweathermap.org/img/wn/11n@2x.png" alt="weather-icon"/>
-                                    <h4>Temp: 29.3°C</h4>
-                                    <h4>Wind: 4.31 M/S</h4>
-                                    <h4>Humidity: 49%</h4>
+                                    {fiveWeather.list[32]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[32]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
+                                    {fiveWeather.list[32] ? <h4>Temp: {fiveWeather.list[32].main.temp} °C</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[32] ? <h4>Wind: {fiveWeather.list[32].wind.speed} M/S</h4> : <h4>N/A</h4>}
+                                    {fiveWeather.list[32] ? <h4>Humidity: {fiveWeather.list[32].main.humidity}%</h4> : <h4>N/A</h4>}
                                     <h4>PM<sub>2.5</sub>: 46</h4>
                                 </li>
                             </ul>
-                        </div>
+                            </>
+                                )}
+                            </div>
                         <div className="space-creator">
                         </div>
                     </div>
