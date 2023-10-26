@@ -1,34 +1,52 @@
 import "./Forecasts.css"
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Button from "../../components/Button.jsx";
-function Forecasts() {
-    const [data, setData] = useState({});
-    const [city, setCity] = useState("");
-    const [lat, setLat] = useState("");
-    const [lon, setLon] = useState("");
-    const [pollution, setPollution] = useState({})
-    const url =`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${import.meta.env.VITE_API_KEY}&units=metric`
-    const urlPollution =`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`
 
-    const searchLocation = (e) => {
-        axios.get(url).then((response) => {
-            setData(response.data)
-            setLat(response.data.coord.lat)
-            setLon(response.data.coord.lon)
-            console.log(response.data)
-            console.log(response.data.coord.lat)
-            console.log(response.data.coord.lon)
-        })
-        setCity("")
-        axios.get(urlPollution).then((pollutionResponse) => {
-            setPollution(pollutionResponse.pollution)
-            console.log(pollutionResponse.pollution)
-        }).catch((error) => {
-            console.error(error);
-        })
+function Forecasts() {
+    const [weather, setWeather] = useState({});
+    const [city, setCity] = useState("");
+    const [pollution, setPollution] = useState({});
+    const [fiveWeather, setFiveWeather] = useState({})
+    const apiKey = import.meta.env.VITE_API_KEY;
+
+
+    const searchLocation = async () => {
+        try {
+            // Fetch weather data
+            const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+            const weatherResponse = await axios.get(weatherUrl);
+            const weatherData = weatherResponse.data;
+            setWeather(weatherData);
+            const lat = weatherData.coord.lat;
+            const lon = weatherData.coord.lon;
+
+
+            // Fetch pollution data using coordinates
+            const pollutionUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+            const pollutionResponse = await axios.get(pollutionUrl);
+            setPollution(pollutionResponse.data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+
+        setCity("");
+    };
+    // UNIX to GMT
+    function timeConverter(){
+        const a = new Date(weather.dt * 1000);
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const year = a.getFullYear();
+        const month = months[a.getMonth()];
+        const date = a.getDate();
+        let hour = a.getHours();
+        const min = a.getMinutes();
+        const sec = a.getSeconds();
+        // GMT TO GMT+7
+        hour = (hour + 7) % 24;
+        return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
     }
 
 
@@ -62,16 +80,21 @@ function Forecasts() {
                     <div className="weather-data">
                         <div className="current-weather">
                             <div className="weather-details">
-                                <h2>{data.name} (2023-10-23)</h2>
-                                {data.main ? <h4>Temperature: {data.main?.temp} °C</h4> : <h4>N/A</h4>}
-                                {data.main ? <h4>Feels like: {data.main?.feels_like} °C</h4> : <h4>N/A</h4>}
-                                {data.wind ? <h4>Wind: {data.wind?.speed} Meter/Sec</h4> : <h4>N/A</h4>}
-                                {data.main ? <h4>Humidity: {data.main?.humidity}%</h4> : <h4>N/A</h4>}
-                                <h4>PM<sub>2.5</sub>: 46</h4>
+                                <h2>{weather.name} ({timeConverter()})</h2>
+                                {weather.main ? <h4>Temperature: {weather.main?.temp} °C</h4> : <h4>N/A</h4>}
+                                {weather.main ? <h4>Feels like: {weather.main?.feels_like} °C</h4> : <h4>N/A</h4>}
+                                {weather.wind ? <h4>Wind: {weather.wind?.speed} Meter/Sec</h4> : <h4>N/A</h4>}
+                                {weather.main ? <h4>Humidity: {weather.main?.humidity}%</h4> : <h4>N/A</h4>}
+                                {pollution && pollution.list && (
+                                <>
+                                {pollution?.list[0] ? <h4>PM<sub>10</sub>: {pollution?.list[0]?.components.pm10} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
+                                {pollution?.list[0] ? <h4>PM<sub>2.5</sub>: {pollution?.list[0]?.components.pm2_5} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
+                                </>
+                                )}
                             </div>
                             <div className="icon-forecast">
-                                {data.weather ? <img src={`https://openweathermap.org/img/wn/${data.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
-                                {data.weather ? <h4>{data.weather[0]?.description}</h4> : <h4>N/A</h4>}
+                                {weather.weather ? <img src={`https://openweathermap.org/img/wn/${weather.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
+                                {weather.weather ? <h4>{weather.weather[0]?.description}</h4> : <h4>N/A</h4>}
                             </div>
                         </div>
                         <div className="days-forecast">
