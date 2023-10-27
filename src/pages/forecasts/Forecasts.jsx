@@ -5,13 +5,21 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Button from "../../components/Button.jsx";
 
+// country code optional not working yet.
+// import { countries } from "i18n-iso-countries";
+// console.log("US (Alpha-2) => " + countries.getName("US", "en"));
+
 function Forecasts() {
     const [weather, setWeather] = useState({});
-    const [city, setCity] = useState("");
+    const [city, setCity] = useState("Bangkok");
     const [pollution, setPollution] = useState({});
     const [fiveWeather, setFiveWeather] = useState({})
+    const [fivePollution, setFivePollution] = useState({})
     const apiKey = import.meta.env.VITE_API_KEY;
 
+    useEffect(() => {
+        searchLocation();
+    }, []);
 
     const searchLocation = async () => {
         try {
@@ -36,28 +44,41 @@ function Forecasts() {
             // Fetch 5-day pollution data using coordinates
             const fivePollutionUrl =`https://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
             const fivePollutionResponse = await axios.get(fivePollutionUrl);
+            setFivePollution(fivePollutionResponse.data)
         } catch (error) {
             console.error("Error fetching data:", error);
         }
 
         setCity("");
     };
-    // UNIX to GMT
+
+        // UNIX to GMT
     function timeConverter(){
         const a = new Date(weather.dt * 1000);
-        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
         const year = a.getFullYear();
         const month = months[a.getMonth()];
         const date = a.getDate();
         let hour = a.getHours();
         const min = a.getMinutes();
-        const sec = a.getSeconds();
-        return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+        return date + '-' + month + '-' + year + ' ' + hour + ':' + min;
     }
-    console.log(fiveWeather.list)
 
+    function myLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    console.log(longitude, latitude)
+                }, (error) => {
+                    console.error('Error getting location:', error);
+                });
+            } else {
+                console.error('Geolocation is not supported by your browser.');
+            }
+    }
 
-    return(
+        return(
         <>
             <NavBar/>
             <main className="weather-forecast">
@@ -82,7 +103,10 @@ function Forecasts() {
                             onClick={searchLocation}>Search
                         </button>
                         <div className="separator"></div>
-                        <Button className="location-btn" placeHolder="Use Current Location"/>
+                        <button type="button"
+                                className="location-btn"
+                                onClick={myLocation}>Use Current Location
+                        </button>
                     </div>
                     <div className="weather-data">
                         <div className="current-weather">
@@ -106,48 +130,54 @@ function Forecasts() {
                         </div>
                         <div className="days-forecast">
                             <h2>5-Day Forecast</h2>
-                            {fiveWeather && fiveWeather.list && (
+                            {fiveWeather && fiveWeather.list && fivePollution && fivePollution.list && (
                             <>
                             <ul className="weather-cards">
                                 <li className="card">
-                                    <h3>(2023-10-23)</h3>
+                                    <h3>(2023-10-26)</h3>
                                     {fiveWeather.list[0] ? <img src={`https://openweathermap.org/img/wn/${fiveWeather.list[0]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[0] ? <h4>Temp: {fiveWeather.list[0].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[0] ? <h4>Wind: {fiveWeather.list[0].wind.speed} M/S</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[0] ? <h4>Humidity: {fiveWeather.list[0].main.humidity}%</h4> : <h4>N/A</h4>}
-                                    <h4>PM<sub>2.5</sub>: 46</h4>
+                                    {fivePollution.list[0] ? <h4>PM<sub>10</sub>: {fivePollution.list[0].components.pm10} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
+                                    {fivePollution.list[0] ? <h4>PM<sub>2.5</sub>: {fivePollution.list[0].components.pm2_5} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
                                 </li>
                                 <li className="card">
-                                    <h3>(2023-10-23)</h3>
+                                    <h3>(2023-10-27)</h3>
                                     {fiveWeather.list[8]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[8]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[8] ? <h4>Temp: {fiveWeather.list[8].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[8] ? <h4>Wind: {fiveWeather.list[8].wind.speed} M/S</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[8] ? <h4>Humidity: {fiveWeather.list[8].main.humidity}%</h4> : <h4>N/A</h4>}
-                                    <h4>PM<sub>2.5</sub>: 46</h4>
+                                    {fivePollution.list[24] ? <h4>PM<sub>10</sub>: {fivePollution.list[24].components.pm10} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
+                                    {fivePollution.list[24] ? <h4>PM<sub>2.5</sub>: {fivePollution.list[24].components.pm2_5} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
+
                                 </li>
                                 <li className="card">
-                                    <h3>(2023-10-23)</h3>
+                                    <h3>(2023-10-28)</h3>
                                     {fiveWeather.list[16]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[16]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[16] ? <h4>Temp: {fiveWeather.list[16].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[16] ? <h4>Wind: {fiveWeather.list[16].wind.speed} M/S</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[16] ? <h4>Humidity: {fiveWeather.list[16].main.humidity}%</h4> : <h4>N/A</h4>}
-                                    <h4>PM<sub>2.5</sub>: 46</h4>
+                                    {fivePollution.list[48] ? <h4>PM<sub>10</sub>: {fivePollution.list[48].components.pm10} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
+                                    {fivePollution.list[48] ? <h4>PM<sub>2.5</sub>: {fivePollution.list[48].components.pm2_5} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
                                 </li>
                                 <li className="card">
-                                    <h3>(2023-10-23)</h3>
+                                    <h3>(2023-10-29)</h3>
                                     {fiveWeather.list[24]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[24]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[24] ? <h4>Temp: {fiveWeather.list[24].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[24] ? <h4>Wind: {fiveWeather.list[24].wind.speed} M/S</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[24] ? <h4>Humidity: {fiveWeather.list[24].main.humidity}%</h4> : <h4>N/A</h4>}
-                                    <h4>PM<sub>2.5</sub>: 46</h4>
+                                    {fivePollution.list[72] ? <h4>PM<sub>10</sub>: {fivePollution.list[72].components.pm10} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
+                                    {fivePollution.list[72] ? <h4>PM<sub>2.5</sub>: {fivePollution.list[72].components.pm2_5} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
                                 </li>
                                 <li className="card">
-                                    <h3>(2023-10-23)</h3>
+                                    <h3>(2023-10-30)</h3>
                                     {fiveWeather.list[32]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[32]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[32] ? <h4>Temp: {fiveWeather.list[32].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[32] ? <h4>Wind: {fiveWeather.list[32].wind.speed} M/S</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[32] ? <h4>Humidity: {fiveWeather.list[32].main.humidity}%</h4> : <h4>N/A</h4>}
-                                    <h4>PM<sub>2.5</sub>: 46</h4>
+                                    {fivePollution.list[82] ? <h4>PM<sub>10</sub>: {fivePollution.list[82].components.pm10} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
+                                    {fivePollution.list[82] ? <h4>PM<sub>2.5</sub>: {fivePollution.list[82].components.pm2_5} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
                                 </li>
                             </ul>
                             </>
