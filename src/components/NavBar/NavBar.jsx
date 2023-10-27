@@ -20,7 +20,7 @@ function NavBar() {
 
             <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
                 <li>
-                    <NavLink to="/home">Home</NavLink>
+                    <NavLink to="/maps">Maps</NavLink>
                 </li>
                 <li>
                     <NavLink to="/forecasts">Forecasts</NavLink>

@@ -3,7 +3,7 @@ import NavBar from "../../components/NavBar/NavBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import Button from "../../components/Button.jsx";
+
 
 // country code optional not working yet.
 // import { countries } from "i18n-iso-countries";
@@ -12,6 +12,7 @@ import Button from "../../components/Button.jsx";
 function Forecasts() {
     const [weather, setWeather] = useState({});
     const [city, setCity] = useState("Bangkok");
+    const [cityLocation, setCityLocation] = useState("")
     const [pollution, setPollution] = useState({});
     const [fiveWeather, setFiveWeather] = useState({})
     const [fivePollution, setFivePollution] = useState({})
@@ -23,6 +24,7 @@ function Forecasts() {
 
     const searchLocation = async () => {
         try {
+
             // Fetch weather data
             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
             const weatherResponse = await axios.get(weatherUrl);
@@ -52,6 +54,35 @@ function Forecasts() {
         setCity("");
     };
 
+    // Get current location
+    // problemen met tijdig locatie ophalen...
+    function myLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                // Fetching city name by coordinates
+                const cityNameUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=${apiKey}`;
+                axios.get(cityNameUrl)
+                    .then((cityNameResponse) => {
+                        setCityLocation(cityNameResponse.data)
+                        const cityNameLocation = cityLocation[0].name;
+                        setCity(cityNameLocation)
+                    })
+                    .catch((cityNameError) => {
+                        console.error("Error fetching city name:", cityNameError);
+                    });
+
+            }, (error) => {
+                console.error('Error getting location:', error);
+            });
+        } else {
+            console.error('Geolocation is not supported by your browser.');
+        }
+    }
+
+
         // UNIX to GMT
     function timeConverter(){
         const a = new Date(weather.dt * 1000);
@@ -62,20 +93,6 @@ function Forecasts() {
         let hour = a.getHours();
         const min = a.getMinutes();
         return date + '-' + month + '-' + year + ' ' + hour + ':' + min;
-    }
-
-    function myLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    console.log(longitude, latitude)
-                }, (error) => {
-                    console.error('Error getting location:', error);
-                });
-            } else {
-                console.error('Geolocation is not supported by your browser.');
-            }
     }
 
         return(
@@ -90,11 +107,13 @@ function Forecasts() {
                                type="text"
                                placeholder="E.g., Bangkok, Chiang Mai, Phuket"
                                value={city}
+                               onBlur={e => e.target.focus()}
                                onChange={(e) => setCity(e.target.value)}
                                onKeyDown={(e) => {
                                if (e.key === 'Enter') {
                                e.preventDefault();
                                searchLocation();
+                               myLocation()
                                }
                         }}/>
                         <button
@@ -183,7 +202,7 @@ function Forecasts() {
                             </>
                                 )}
                             </div>
-                        <div className="space-creator">
+                        <div className="space-creator-forecast">
                         </div>
                     </div>
                 </div>

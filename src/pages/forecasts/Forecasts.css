@@ -121,7 +121,7 @@
     list-style: none;
     color: #fff;
     padding: 18px 16px;
-    border-radius: 5px;
+    border-radius: 10px;
     background: #333333;
     width: calc(100% / 5);
 }
@@ -131,7 +131,7 @@
     margin: 5px 0 -5px 17px;
 }
 
-.space-creator {
+.space-creator-forecast {
     height: 50px;
 }
 

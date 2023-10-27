@@ -2,7 +2,7 @@ import "./Landing.css"
 import { Link } from "react-router-dom";
 import Button from "../../components/Button.jsx";
 import React from "react";
-import Home from "../home/Home.jsx";
+import Maps from "../maps/Maps.jsx";
 
 function Landing() {
     return (
@@ -13,7 +13,7 @@ function Landing() {
               <form className="input-group-landing">
                 <input type="text" placeholder="Email" />
                 <input type="password" placeholder="Password"/>
-                <Link to="/home"><Button className="login-btn" placeHolder="Login"/></Link>
+                <Link to="/maps"><Button className="login-btn" placeHolder="Login"/></Link>
               </form>
             <p className="p2-landing">Don&apos;t have an account yet?</p>
             <p className="p2-landing"><Link to="/register">Sign up now</Link></p>
