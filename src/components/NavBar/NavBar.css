@@ -11,7 +11,12 @@
     padding: 20px;
 }
 
-.logo img {
+.logo-nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.logo-nav img {
     max-height: 80px;
     max-width: 100%;
     margin-right: 20px;
@@ -35,13 +40,20 @@
 }
 
 .nav-links a:hover {
-    color: #ffffff;
+    color: #cccccc;
+}
+
+.nav-links .active {
+    border-bottom: 2px solid #fff;
 }
 
 @media (max-width: 768px) {
     .nav-links li {
         margin-right: 26px;
         font-size: 12px;
+    }
+    .logo-nav h2{
+        display: none;
     }
 }
 

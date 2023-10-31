@@ -8,8 +8,9 @@ function NavBar() {
 
     return (
         <nav className="navbar">
-            <div className="logo">
+            <div className="logo-nav">
                 <img src={logo} alt="Logo" />
+                <h2>Thailand Weather</h2>
             </div>
 
             <div

@@ -16,14 +16,18 @@ function Forecasts() {
     const [pollution, setPollution] = useState({});
     const [fiveWeather, setFiveWeather] = useState({})
     const [fivePollution, setFivePollution] = useState({})
+    const [error, toggleError] =useState(false)
+    const [errorLocation, toggleErrorLocation] =useState(false)
     const apiKey = import.meta.env.VITE_API_KEY;
 
+    // Setting standard location to Bangkok
     useEffect(() => {
         searchLocation();
     }, []);
 
     const searchLocation = async () => {
         try {
+            toggleError(false);
 
             // Fetch weather data
             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -49,6 +53,7 @@ function Forecasts() {
             setFivePollution(fivePollutionResponse.data)
         } catch (error) {
             console.error("Error fetching data:", error);
+            toggleError(true)
         }
 
         setCity("");
@@ -57,6 +62,7 @@ function Forecasts() {
     // Get current location
     // problemen met tijdig locatie ophalen...
     function myLocation() {
+        toggleErrorLocation(false)
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 const latitude = position.coords.latitude;
@@ -72,6 +78,7 @@ function Forecasts() {
                     })
                     .catch((cityNameError) => {
                         console.error("Error fetching city name:", cityNameError);
+                        toggleErrorLocation(true)
                     });
 
             }, (error) => {
@@ -82,6 +89,7 @@ function Forecasts() {
         }
     }
 
+    console.log(fiveWeather)
 
         // UNIX to GMT
     function timeConverter(){
@@ -103,6 +111,8 @@ function Forecasts() {
                 <div className="container-forecast">
                     <div className="weather-input">
                         <h3>Enter City Name</h3>
+                        {error && <span>City not found or an error occurred. Please check the city name.</span>}
+                        {errorLocation && <span>Something went wrong while trying to get your location. Please make sure that location services are enabled in your browser and try again.</span>}
                         <input className="city-input"
                                type="text"
                                placeholder="E.g., Bangkok, Chiang Mai, Phuket"
@@ -153,7 +163,7 @@ function Forecasts() {
                             <>
                             <ul className="weather-cards">
                                 <li className="card">
-                                    <h3>(2023-10-26)</h3>
+                                    {fiveWeather.list[0] ? <h3>{fiveWeather.list[0].dt_txt.split(" ")[0].split('-').reverse().join('-')}</h3> : <h3>N/A</h3>}
                                     {fiveWeather.list[0] ? <img src={`https://openweathermap.org/img/wn/${fiveWeather.list[0]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[0] ? <h4>Temp: {fiveWeather.list[0].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[0] ? <h4>Wind: {fiveWeather.list[0].wind.speed} M/S</h4> : <h4>N/A</h4>}
@@ -162,7 +172,7 @@ function Forecasts() {
                                     {fivePollution.list[0] ? <h4>PM<sub>2.5</sub>: {fivePollution.list[0].components.pm2_5} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
                                 </li>
                                 <li className="card">
-                                    <h3>(2023-10-27)</h3>
+                                    {fiveWeather.list[8] ? <h3>{fiveWeather.list[8].dt_txt.split(" ")[0].split('-').reverse().join('-')}</h3> : <h3>N/A</h3>}
                                     {fiveWeather.list[8]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[8]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[8] ? <h4>Temp: {fiveWeather.list[8].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[8] ? <h4>Wind: {fiveWeather.list[8].wind.speed} M/S</h4> : <h4>N/A</h4>}
@@ -172,7 +182,7 @@ function Forecasts() {
 
                                 </li>
                                 <li className="card">
-                                    <h3>(2023-10-28)</h3>
+                                    {fiveWeather.list[16] ? <h3>{fiveWeather.list[16].dt_txt.split(" ")[0].split('-').reverse().join('-')}</h3> : <h3>N/A</h3>}
                                     {fiveWeather.list[16]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[16]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[16] ? <h4>Temp: {fiveWeather.list[16].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[16] ? <h4>Wind: {fiveWeather.list[16].wind.speed} M/S</h4> : <h4>N/A</h4>}
@@ -181,7 +191,7 @@ function Forecasts() {
                                     {fivePollution.list[48] ? <h4>PM<sub>2.5</sub>: {fivePollution.list[48].components.pm2_5} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
                                 </li>
                                 <li className="card">
-                                    <h3>(2023-10-29)</h3>
+                                    {fiveWeather.list[24] ? <h3>{fiveWeather.list[24].dt_txt.split(" ")[0].split('-').reverse().join('-')}</h3> : <h3>N/A</h3>}
                                     {fiveWeather.list[24]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[24]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[24] ? <h4>Temp: {fiveWeather.list[24].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[24] ? <h4>Wind: {fiveWeather.list[24].wind.speed} M/S</h4> : <h4>N/A</h4>}
@@ -190,7 +200,7 @@ function Forecasts() {
                                     {fivePollution.list[72] ? <h4>PM<sub>2.5</sub>: {fivePollution.list[72].components.pm2_5} µg/m<sup>3</sup></h4> : <h4>N/A</h4>}
                                 </li>
                                 <li className="card">
-                                    <h3>(2023-10-30)</h3>
+                                    {fiveWeather.list[32] ? <h3>{fiveWeather.list[32].dt_txt.split(" ")[0].split('-').reverse().join('-')}</h3> : <h3>N/A</h3>}
                                     {fiveWeather.list[32]  ?<img src={`https://openweathermap.org/img/wn/${fiveWeather.list[32]?.weather[0]?.icon}@2x.png`} alt="weather-icon"/> : <h4>N/A</h4>}
                                     {fiveWeather.list[32] ? <h4>Temp: {fiveWeather.list[32].main.temp} °C</h4> : <h4>N/A</h4>}
                                     {fiveWeather.list[32] ? <h4>Wind: {fiveWeather.list[32].wind.speed} M/S</h4> : <h4>N/A</h4>}
