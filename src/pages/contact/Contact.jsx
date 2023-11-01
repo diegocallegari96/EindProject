@@ -2,7 +2,6 @@ import "./Contact.css"
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from "react";
 import {faAddressCard, faBuilding, faEnvelope, faPhone} from "@fortawesome/free-solid-svg-icons";
 import {faFacebook, faFacebookMessenger} from '@fortawesome/free-brands-svg-icons'
 function Contact() {
