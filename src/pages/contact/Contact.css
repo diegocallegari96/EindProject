@@ -1,0 +1,49 @@
+.contact-page {
+    margin-top: 150px;
+}
+
+.contact-page h1 {
+    text-align: center;
+    background: #333333;
+    font-size: 1.75rem;
+    padding: 18px 0;
+    margin: 0 30px;
+    border-radius: 5px;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    margin: 25px 0;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    background: #333333;
+}
+
+.contact-container > div {
+    flex: 1;
+    max-width: 45%;
+}
+
+.contact-container h4 {
+    margin: 5px 5px;
+    font-size: 1rem;
+}
+
+.contact-container i {
+    padding-right: 8px;
+}
+
+@media (max-width: 768px) {
+    .contact-container h4 {
+        font-size: 0.75rem;
+    }
+}
+
+
+
+

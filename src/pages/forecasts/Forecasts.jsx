@@ -89,8 +89,6 @@ function Forecasts() {
         }
     }
 
-    console.log(fiveWeather)
-
         // UNIX to GMT
     function timeConverter(){
         const a = new Date(weather.dt * 1000);

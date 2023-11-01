@@ -5,8 +5,8 @@ function NotFound() {
     return(
         <div className="div-not-found">
             <main>
-                <h2>Oeps... Deze pagina bestaat niet</h2>
-                <p>Breng me terug naar de <Link to="/">Home pagina</Link></p>
+                <h2>Oops... It seems this page doesn&apos;t exist.</h2>
+                <p>Bring me back to the <Link to="/">Landing page</Link></p>
             </main>
         </div>
     )

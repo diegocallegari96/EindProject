@@ -1,0 +1,12 @@
+.account-page {
+    margin-top: 150px;
+}
+
+.account-page h1 {
+    text-align: center;
+    background: #333333;
+    font-size: 1.75rem;
+    padding: 18px 0;
+    margin: 0 30px;
+    border-radius: 5px;
+}

@@ -27,10 +27,10 @@ function NavBar() {
                     <NavLink to="/forecasts">Forecasts</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/contact">Contact</NavLink>
+                    <NavLink to="/account">Account</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/account">Account</NavLink>
+                    <NavLink to="/contact">Contact</NavLink>
                 </li>
             </ul>
         </nav>
