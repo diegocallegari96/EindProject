@@ -1,7 +1,7 @@
 import "./Account.css"
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
-
+import WeatherCard from "../../components/WeatherCard/WeatherCard.jsx";
 
 function Account() {
 
