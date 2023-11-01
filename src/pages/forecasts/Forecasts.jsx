@@ -74,7 +74,7 @@ function Forecasts() {
                 axios.get(cityNameUrl)
                     .then((cityNameResponse) => {
                         setCityLocation(cityNameResponse.data)
-                        const cityNameLocation = cityLocation[0].name;
+                        const cityNameLocation = cityNameResponse.data[0].name;
                         setCity(cityNameLocation)
                     })
                     .catch((cityNameError) => {
