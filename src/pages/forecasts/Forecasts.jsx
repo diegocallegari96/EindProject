@@ -224,6 +224,7 @@ function Forecasts() {
                         <button type="button"
                                 className="location-btn"
                                 onClick={() => {
+                                    myLocation();
                                     if (document.activeElement.tagName === 'INPUT') {
                                         myLocation();
                                     }
