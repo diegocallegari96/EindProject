@@ -58,19 +58,16 @@ input {
     width: 15.5rem;
 }
 
-/*.login-button-landing {*/
-/*    width: 16.5rem;*/
-/*}*/
-
-/*.login-button-landing, .create-account-button-landing {*/
-/*    background: #ff5722;*/
-/*    color: #fff;*/
-/*    padding: 10px 20px;*/
-/*    border: none;*/
-/*    border-radius: 5px;*/
-/*    font-size: 16px;*/
-/*    cursor: pointer;*/
-/*}*/
+.login-button-landing {
+    width: 16.5rem;
+    background: #ff5722;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
 .login-button-landing:hover, .create-account-button-landing:hover {
     background: #ff814d;
@@ -89,4 +86,10 @@ input {
 
 .landing-container button:hover {
     background: #ff814d;
+}
+
+.error-message-signin {
+    color: red;
+    text-shadow: 4px 4px 8px rgb(12, 12, 12);
+    font-size: 20px;
 }

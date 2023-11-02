@@ -1,12 +1,12 @@
 import React from 'react';
 
-const WeatherCard = ({ data, pollution }) => {
+const WeatherCard = ({data, pollution}) => {
     return (
         <li className="card">
             {data ? (
                 <>
                     <h3>{data.dt_txt.split(" ")[0].split('-').reverse().join('-')}</h3>
-                    <img src={`https://openweathermap.org/img/wn/${data.weather[0]?.icon}@2x.png`} alt="weather-icon" />
+                    <img src={`https://openweathermap.org/img/wn/${data.weather[0]?.icon}@2x.png`} alt="weather-icon"/>
                     <h4>Temp: {data.main.temp} °C</h4>
                     <h4>Wind: {data.wind.speed} M/S</h4>
                     <h4>Humidity: {data.main.humidity}%</h4>

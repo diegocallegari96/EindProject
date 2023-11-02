@@ -44,6 +44,17 @@
     text-shadow: 3px 3px 6px rgb(12, 12, 12);
 }
 
+.registration-button {
+    width: 16.5rem;
+    background: #ff5722;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 .input-group-registration {
     display: flex;
     flex-direction: column;
@@ -72,4 +83,10 @@ input {
 
 .registration-container button:hover {
     background: #ff814d;
+}
+
+.error-message-signup {
+    color: red;
+    text-shadow: 3px 3px 6px rgb(12, 12, 12);
+
 }

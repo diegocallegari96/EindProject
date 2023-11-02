@@ -1,0 +1,49 @@
+.favourites-page {
+    margin-top: 150px;
+}
+
+.favourites-page h1 {
+    text-align: center;
+    background: #333333;
+    font-size: 1.75rem;
+    padding: 18px 0;
+    margin: 0 30px 30px 30px;
+    border-radius: 5px;
+}
+
+.favourites-page h4 {
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.favourites-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: 20px;
+}
+
+.favourites-container .card {
+    list-style: none;
+    color: #fff;
+    padding: 18px 16px;
+    border-radius: 5px;
+    background: #333333;
+    width: calc(82% / 4);
+}
+
+.space-creator-favourites {
+    height: 60px;
+}
+
+@media (max-width: 768px) {
+    .favourites-container .card h4, p {
+        font-size: 0.75rem;
+    }
+    .favourites-container .card {
+        width: calc(70% / 2);
+    }
+}

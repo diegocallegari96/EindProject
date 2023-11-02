@@ -6,7 +6,7 @@ import WeatherMap from "../../components/WeatherMap/weatherMap.jsx";
 
 function Maps() {
     const apiKey = import.meta.env.VITE_API_KEY;
-    return(
+    return (
 
         <div>
             <NavBar/>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WeatherMap = ({ mapType, apiKey, title, imageSrc }) => {
+const WeatherMap = ({mapType, apiKey, title, imageSrc}) => {
     return (
         <div className='image-container-maps'>
             <h2>{title}:</h2>
