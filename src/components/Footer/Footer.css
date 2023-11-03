@@ -1,26 +1,15 @@
-footer {
-    background-color: #333; /* Change the background color to your preference */
-    color: #fff; /* Text color */
-    padding: 20px 0;
-    text-align: center;
+.footer {
+    background-color: rgba(255, 87, 34);
+    color: #fff;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    padding: 5px 0;
+    position: fixed;
+    width: 100%;
+    font-size: 16px;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-p {
-    font-size: 14px;
-    margin: 0;
-}
-
-a {
-    color: #fff; /* Link color */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}

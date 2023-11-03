@@ -1,0 +1,62 @@
+.container-home {
+    margin-top: 150px;
+}
+
+.space-creator-home {
+    height: 50px;
+}
+
+.maps-container {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.header-maps {
+    text-align: center;
+    background: #333333;
+    font-size: 1.75rem;
+    padding: 18px 0;
+    margin: 0 30px;
+    border-radius: 5px;
+}
+
+.image-container-maps {
+    flex-wrap: wrap;
+    width: 450px;
+    padding: 18px 16px;
+    margin: 30px 30px;
+    border-radius: 5px;
+    background: #333333;
+
+
+}
+
+.weather-map {
+    height: 400px;
+    width: 400px;
+    padding: 0 25px;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+
+}
+
+@media (max-width: 768px) {
+    .image-container-maps {
+        width: 100%;
+    }
+    .weather-map {
+        width: 80%;
+        height: 80%;
+
+    }
+    .image-container-maps span {
+        font-size: 0.75rem;
+    }
+
+}
