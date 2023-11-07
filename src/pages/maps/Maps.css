@@ -26,6 +26,9 @@
 }
 
 .image-container-maps {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
     flex-wrap: wrap;
     width: 450px;
     padding: 18px 16px;
@@ -37,14 +40,17 @@
 }
 
 .weather-map {
+    background-image: url("src/assets/Scherm­afbeelding 2023-11-07 om 15.08.33.png");
+    background-size: 400px;
     height: 400px;
     width: 400px;
-    padding: 0 25px;
+    /*padding: 0 25px;*/
     display: flex;
     justify-items: center;
     justify-content: center;
 
 }
+
 
 @media (max-width: 768px) {
     .image-container-maps {
