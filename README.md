@@ -9,7 +9,7 @@ Welcome to Thailand WeatherApplication. This website allows you to access weathe
 
 ## Screenshots
 
-![App Screenshot](src/assets/Git Readme Photo.png)
+![App Screenshot](src/assets/Git-Readme-Photo.png)
 
 
 ## Features
