@@ -1,5 +1,5 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![Logo](src/assets/logo-eindproject.svg)
 
 
 # Thailand WeatherApplication
@@ -9,7 +9,7 @@ Welcome to Thailand WeatherApplication. This website allows you to access weathe
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](src/assets/Git Readme Photo.png)
 
 
 ## Features
