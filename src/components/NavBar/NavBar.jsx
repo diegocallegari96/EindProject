@@ -32,6 +32,9 @@ function NavBar() {
                 <li>
                     <NavLink to="/contact">Contact</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/">Log out</NavLink>
+                </li>
             </ul>
         </nav>
     );
