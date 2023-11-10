@@ -2,9 +2,20 @@ import "./NavBar.css"
 import {NavLink} from "react-router-dom";
 import logo from "../../assets/logo-eindproject.svg"
 import {useState} from "react";
+import { useAuthContext } from "../../context/AuthContext";
 
 function NavBar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const {user, setUser} = useAuthContext();
+
+    const logout = () => {
+        setUser(null);
+
+        localStorage.removeItem('accessToken');
+
+        window.location.href = '/';
+    };
 
     return (
         <nav className="navbar">
@@ -33,7 +44,7 @@ function NavBar() {
                     <NavLink to="/contact">Contact</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/">Log out</NavLink>
+                    <a style={{cursor: 'pointer'}} onClick={() => logout()}>Log out</a>
                 </li>
             </ul>
         </nav>
