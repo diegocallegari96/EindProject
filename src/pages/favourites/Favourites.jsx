@@ -5,8 +5,11 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {useAuthContext} from "../../context/AuthContext";
 
 function Favourites() {
+
+    const {user, setUser} = useAuthContext();
 
     useEffect(() => {
         getFavourites();
@@ -64,6 +67,12 @@ function Favourites() {
         ).then((response) => {
             console.log(response.data.info);
             setFavourites(JSON.parse(response.data.info));
+
+            setUser({
+                ...user,
+                favourites: JSON.parse(response.data.info)
+            });
+
         }).catch((error) => {
             console.error(error);
         })

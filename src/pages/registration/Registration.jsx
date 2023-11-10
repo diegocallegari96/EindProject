@@ -2,8 +2,11 @@ import "./Registration.css"
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
 import axios from "axios";
+import {useAuthContext} from "../../context/AuthContext";
 
 function Registration() {
+
+    const {user, setUser} = useAuthContext();
 
     const baseUrl = 'https://frontend-educational-backend.herokuapp.com/api/';
 
@@ -73,6 +76,8 @@ function Registration() {
             }
         ).then((response) => {
 
+            setUser(response.data);
+            
             // Save accessToken in LocalStorage
             const accessToken = response.data.accessToken;
             localStorage.setItem('accessToken', accessToken);

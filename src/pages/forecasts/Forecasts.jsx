@@ -6,6 +6,7 @@ import axios from "axios";
 import WeatherCard from "../../components/WeatherCard/WeatherCard.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar as emptyStar} from "@fortawesome/free-regular-svg-icons";
+import { useAuthContext } from "../../context/AuthContext";
 
 function Forecasts() {
     const [weather, setWeather] = useState({});
@@ -20,6 +21,7 @@ function Forecasts() {
     const [loadingLocation, setLoadingLocation] = useState(false);
     const apiKey = import.meta.env.VITE_API_KEY;
 
+    const {user, setUser} = useAuthContext();
 
     // Setting standard location to Bangkok
     useEffect(() => {
@@ -123,6 +125,11 @@ function Forecasts() {
         }
 
         data = JSON.stringify(data);
+
+        setUser({
+            ...user,
+            favourites: data
+        })
 
         axios.put(
             baseUrl + 'user',

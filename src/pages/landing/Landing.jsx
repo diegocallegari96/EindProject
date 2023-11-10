@@ -2,8 +2,11 @@ import "./Landing.css"
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
 import axios from "axios";
+import { useAuthContext } from "../../context/AuthContext";
 
 function Landing() {
+
+    const {user, setUser} = useAuthContext();
 
     const baseUrl = 'https://frontend-educational-backend.herokuapp.com/api/';
 
@@ -29,6 +32,8 @@ function Landing() {
             // Save accessToken in LocalStorage
             const accessToken = response.data.accessToken;
             localStorage.setItem('accessToken', accessToken);
+
+            setUser(response.data);
 
             window.location.href = '/forecasts';
         }).catch((error) => {
