@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import React, {useState} from "react";
 import axios from "axios";
 import {useAuthContext} from "../../context/AuthContext";
+import Panel from "../../components/Panel/Panel";
+
 
 function Registration() {
 
@@ -90,32 +92,28 @@ function Registration() {
 
 
     return (
-        <div className="background-registration">
-            <div className="registration-container">
-                <h1 className="h1-registration">Sign up now</h1>
-                <p className="p1-registration">Use all its features for free, forever!</p>
-                {errors && <span className="error-message-signup">{errors}</span>}
-                <form className="input-group-registration">
-                    <input type="text" placeholder="Username" onChange={(e) => setForm({
-                        ...form,
-                        username: e.target.value
-                    })}/>
-                    <input type="text" placeholder="Email" onChange={(e) => setForm({
-                        ...form,
-                        email: e.target.value
-                    })}/>
-                    <input type="password" placeholder="Password" onChange={(e) => setForm({
-                        ...form,
-                        password: e.target.value
-                    })}/>
-                    <input type="password" placeholder="Confirm password"
-                           onChange={(e) => setConfirmPassword(e.target.value)}/>
-                    <button className="registration-button" onClick={(e) => submit(e)}>Create Account</button>
-                </form>
-                <p className="p2-registration">Already have an account?</p>
-                <p className="p2-registration"><Link to="/">Sign in now</Link></p>
-            </div>
-        </div>
+        <Panel title="Sign up now" text="Use all its features for free, forever!">
+            {errors && <span className="error-message-signup">{errors}</span>}
+            <form className="input-group-registration">
+                <input type="text" placeholder="Username" onChange={(e) => setForm({
+                    ...form,
+                    username: e.target.value
+                })}/>
+                <input type="text" placeholder="Email" onChange={(e) => setForm({
+                    ...form,
+                    email: e.target.value
+                })}/>
+                <input type="password" placeholder="Password" onChange={(e) => setForm({
+                    ...form,
+                    password: e.target.value
+                })}/>
+                <input type="password" placeholder="Confirm password"
+                       onChange={(e) => setConfirmPassword(e.target.value)}/>
+                <button className="registration-button" onClick={(e) => submit(e)}>Create Account</button>
+            </form>
+            <p className="p2-registration">Already have an account?</p>
+            <p className="p2-registration"><Link to="/">Sign in now</Link></p>
+        </Panel>
     )
 }
 
