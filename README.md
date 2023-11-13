@@ -29,15 +29,17 @@ Make sure you have:
 
 Install `eindproject` with npm
 
-bash
+```bash
 git clone https://github.com/diegocallegari96/EindProject.git
+```
 
 
 Then redirect to the folder and install the dependencies
 
-bash
+```bash
 cd eindproject
 npm install
+```
 
 
 ## Environment Variables
@@ -45,7 +47,9 @@ npm install
 To run this project, you will need to add the following environment variables to your .env file
 
 
+```env
 VITE_API_KEY=78bc08d8f3b87079b6ae5563af0efd2e
+```
 
 
 ## Acknowledgements
