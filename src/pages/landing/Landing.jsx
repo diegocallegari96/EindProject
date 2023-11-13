@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import { useAuthContext } from "../../context/AuthContext";
 import Panel from "../../components/Panel/Panel";
+import Button from "../../components/Button/Button.jsx";
 
 function Landing() {
 
@@ -55,7 +56,7 @@ function Landing() {
                     ...form,
                     password: e.target.value
                 })}/>
-                <button className="login-button-landing" onClick={(e) => login(e)}>Login</button>
+                <Button className="login-button-landing" onClick={(e) => login(e)} label="Login"/>
             </form>
             <p className="p2-landing">Don&apos;t have an account yet?</p>
             <p className="p2-landing"><Link to="/register">Sign up now</Link></p>

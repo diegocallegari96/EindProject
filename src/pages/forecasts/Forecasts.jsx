@@ -7,6 +7,7 @@ import WeatherCard from "../../components/WeatherCard/WeatherCard.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar as emptyStar} from "@fortawesome/free-regular-svg-icons";
 import { useAuthContext } from "../../context/AuthContext";
+import Button from "../../components/Button/Button.jsx";
 
 function Forecasts() {
     const [weather, setWeather] = useState({});
@@ -219,25 +220,17 @@ function Forecasts() {
                                        handleNewCityReceived()
                                    }
                                }}/>
-                        <button
-                            type="button"
-                            className="search-btn"
-                            onClick={() => {
-                                searchLocation();
-                                handleNewCityReceived();
-                            }}>Search
-                        </button>
+                        <Button className="search-btn" onClick={() => {
+                            searchLocation();
+                            handleNewCityReceived();
+                        }} label="Search" />
                         <div className="separator"></div>
-                        <button type="button"
-                                className="location-btn"
-                                onClick={() => {
-                                    myLocation();
-                                    if (document.activeElement.tagName === 'INPUT') {
-                                        myLocation();
-                                    }
-                                }}
-                        >Use Current Location
-                        </button>
+                        <Button className="location-btn" onClick={() => {
+                            myLocation();
+                            if (document.activeElement.tagName === 'INPUT') {
+                                myLocation();
+                            }
+                        }} label="Use Current Location"/>
                     </div>
                     <div className="weather-data">
                         <div className="current-weather">
