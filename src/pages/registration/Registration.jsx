@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import {useAuthContext} from "../../context/AuthContext";
 import Panel from "../../components/Panel/Panel";
+import Button from "../../components/Button/Button.jsx";
 
 
 function Registration() {
@@ -109,7 +110,7 @@ function Registration() {
                 })}/>
                 <input type="password" placeholder="Confirm password"
                        onChange={(e) => setConfirmPassword(e.target.value)}/>
-                <button className="registration-button" onClick={(e) => submit(e)}>Create Account</button>
+                <Button className="registration-button" onClick={(e) => submit(e)} label="Create Account"/>
             </form>
             <p className="p2-registration">Already have an account?</p>
             <p className="p2-registration"><Link to="/">Sign in now</Link></p>
