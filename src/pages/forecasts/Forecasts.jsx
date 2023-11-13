@@ -199,7 +199,7 @@ function Forecasts() {
         <>
             <NavBar/>
             <main className="weather-forecast">
-                <h1>Thailand Forecast</h1>
+                <h1>Forecasts</h1>
                 <div className="container-forecast">
                     <div className="weather-input">
                         <h3>Enter City Name</h3>
